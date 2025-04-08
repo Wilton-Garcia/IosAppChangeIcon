@@ -32,11 +32,56 @@
         </dict>
         <key>CFBundleAlternateIcons</key>
         <dict>
-            <key>AppIcon-Camera-Preview</key>
+            <key>AppIcon-Camera</key>
             <dict>
                 <key>CFBundleIconFiles</key>
                 <array>
-                    <string>AppIcon-Camera-Preview</string>
+                    <string>AppIcon-Camera</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>AppIcon-Backpack</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>AppIcon-Backpack</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>AppIcon-Campfire</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>AppIcon-Campfire</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>AppIcon-Map</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>AppIcon-Map</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>AppIcon-MagnifyGlass</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>AppIcon-MagnifyGlass</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>AppIcon-Mushroom</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>AppIcon-Mushroom</string>
                 </array>
                 <key>UIPrerenderedIcon</key>
                 <false/>

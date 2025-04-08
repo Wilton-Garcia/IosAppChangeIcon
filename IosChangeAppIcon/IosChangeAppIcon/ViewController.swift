@@ -19,10 +19,13 @@ class ViewController: UIViewController {
                       "AppIcon-Campfire"
     ]
     
+    private lazy var blankViewControllerTransitioningDelegate = BlankViewControllerTransitioningDelegate()
+
+    
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Change App Icon"
+        label.text = "Change App Icon - UIKit"
         label.textColor = .label
         label.font = .systemFont(ofSize: 32, weight: .bold)
         label.textAlignment = .center
@@ -30,6 +33,33 @@ class ViewController: UIViewController {
         return label
     }()
     
+    private lazy var infoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Click to change Icon"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var showAlertLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Show Alert"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var showAlertSwitch: UISwitch = {
+        let switchControl = UISwitch()
+        switchControl.isOn = false
+        switchControl.translatesAutoresizingMaskIntoConstraints = false
+
+        return switchControl
+    }()
     
     
     // Lazy initialization of the UICollectionView
@@ -71,9 +101,30 @@ class ViewController: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
+        
+        view.addSubview(infoLabel)
+        NSLayoutConstraint.activate([
+            infoLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            infoLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            infoLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+        
+        view.addSubview(showAlertLabel)
+        NSLayoutConstraint.activate([
+            showAlertLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 20),
+            showAlertLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
+        ])
+        
+        view.addSubview(showAlertSwitch)
+        NSLayoutConstraint.activate([
+            showAlertSwitch.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 20),
+            showAlertSwitch.leadingAnchor.constraint(equalTo: showAlertLabel.leadingAnchor, constant: 190),
+            showAlertSwitch.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+        
         view.addSubview(mainCollectionView)
         NSLayoutConstraint.activate([
-            mainCollectionView.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.topAnchor, constant: 50),
+            mainCollectionView.topAnchor.constraint(equalTo: showAlertSwitch.safeAreaLayoutGuide.topAnchor, constant: 50),
             mainCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             mainCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             mainCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -110,14 +161,31 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Will change icon image to \(imageNames[indexPath.row])")
-        if UIApplication.shared.supportsAlternateIcons {
-            UIApplication.shared.setAlternateIconName("AppIcon-Camera-Preview") { error in
-                if let error = error {
-                    print("Erro detalhado: \(error)")
-                } else {
-                    print("Sem error")
+        
+        if showAlertSwitch.isOn {
+            if UIApplication.shared.supportsAlternateIcons {
+                UIApplication.shared.setAlternateIconName(imageNames[indexPath.row]) { error in
+                    if let error = error {
+                        print("Erro detalhado: \(error)")
+                    } else {
+                        print("Sem error")
+                    }
                 }
             }
+        } else {
+          
+                if UIApplication.shared.supportsAlternateIcons {
+                    let blankViewController = UIViewController()
+                    blankViewController.modalPresentationStyle = .custom
+                    blankViewController.transitioningDelegate = blankViewControllerTransitioningDelegate
+                    present(blankViewController, animated: false, completion: { [weak self] in
+                        UIApplication.shared.setAlternateIconName(self!.imageNames[indexPath.row])
+                        self?.dismiss(animated: false, completion: nil)
+                    })
+                
+            }
         }
+        
+  
     }
 }

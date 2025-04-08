@@ -7,32 +7,19 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		4DA727BE2DA568F2003C4A41 /* IosChangeAppIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IosChangeAppIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DA727E12DA5A260003C4A41 /* IosChangeAppIcon-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IosChangeAppIcon-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		4DA727D02DA568F4003C4A41 /* Exceptions for "IosChangeAppIcon" folder in "IosChangeAppIcon" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 4DA727BD2DA568F2003C4A41 /* IosChangeAppIcon */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		4DA727C02DA568F2003C4A41 /* IosChangeAppIcon */ = {
+		4DA727E32DA5A260003C4A41 /* IosChangeAppIcon-SwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				4DA727D02DA568F4003C4A41 /* Exceptions for "IosChangeAppIcon" folder in "IosChangeAppIcon" target */,
-			);
-			path = IosChangeAppIcon;
+			path = "IosChangeAppIcon-SwiftUI";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4DA727BB2DA568F2003C4A41 /* Frameworks */ = {
+		4DA727DE2DA5A260003C4A41 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4DA727B52DA568F2003C4A41 = {
+		4DA727D82DA5A260003C4A41 = {
 			isa = PBXGroup;
 			children = (
-				4DA727C02DA568F2003C4A41 /* IosChangeAppIcon */,
-				4DA727BF2DA568F2003C4A41 /* Products */,
+				4DA727E32DA5A260003C4A41 /* IosChangeAppIcon-SwiftUI */,
+				4DA727E22DA5A260003C4A41 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		4DA727BF2DA568F2003C4A41 /* Products */ = {
+		4DA727E22DA5A260003C4A41 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4DA727BE2DA568F2003C4A41 /* IosChangeAppIcon.app */,
+				4DA727E12DA5A260003C4A41 /* IosChangeAppIcon-SwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4DA727BD2DA568F2003C4A41 /* IosChangeAppIcon */ = {
+		4DA727E02DA5A260003C4A41 /* IosChangeAppIcon-SwiftUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4DA727D12DA568F4003C4A41 /* Build configuration list for PBXNativeTarget "IosChangeAppIcon" */;
+			buildConfigurationList = 4DA727EF2DA5A262003C4A41 /* Build configuration list for PBXNativeTarget "IosChangeAppIcon-SwiftUI" */;
 			buildPhases = (
-				4DA727BA2DA568F2003C4A41 /* Sources */,
-				4DA727BB2DA568F2003C4A41 /* Frameworks */,
-				4DA727BC2DA568F2003C4A41 /* Resources */,
+				4DA727DD2DA5A260003C4A41 /* Sources */,
+				4DA727DE2DA5A260003C4A41 /* Frameworks */,
+				4DA727DF2DA5A260003C4A41 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				4DA727C02DA568F2003C4A41 /* IosChangeAppIcon */,
+				4DA727E32DA5A260003C4A41 /* IosChangeAppIcon-SwiftUI */,
 			);
-			name = IosChangeAppIcon;
+			name = "IosChangeAppIcon-SwiftUI";
 			packageProductDependencies = (
 			);
-			productName = IosChangeAppIcon;
-			productReference = 4DA727BE2DA568F2003C4A41 /* IosChangeAppIcon.app */;
+			productName = "IosChangeAppIcon-SwiftUI";
+			productReference = 4DA727E12DA5A260003C4A41 /* IosChangeAppIcon-SwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		4DA727B62DA568F2003C4A41 /* Project object */ = {
+		4DA727D92DA5A260003C4A41 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					4DA727BD2DA568F2003C4A41 = {
+					4DA727E02DA5A260003C4A41 = {
 						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
-			buildConfigurationList = 4DA727B92DA568F2003C4A41 /* Build configuration list for PBXProject "IosChangeAppIcon" */;
+			buildConfigurationList = 4DA727DC2DA5A260003C4A41 /* Build configuration list for PBXProject "IosChangeAppIcon-SwiftUI" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 4DA727B52DA568F2003C4A41;
+			mainGroup = 4DA727D82DA5A260003C4A41;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 4DA727BF2DA568F2003C4A41 /* Products */;
+			productRefGroup = 4DA727E22DA5A260003C4A41 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4DA727BD2DA568F2003C4A41 /* IosChangeAppIcon */,
+				4DA727E02DA5A260003C4A41 /* IosChangeAppIcon-SwiftUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4DA727BC2DA568F2003C4A41 /* Resources */ = {
+		4DA727DF2DA5A260003C4A41 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -128,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4DA727BA2DA568F2003C4A41 /* Sources */ = {
+		4DA727DD2DA5A260003C4A41 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -138,67 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		4DA727D22DA568F4003C4A41 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Camera AppIcon-Mushroon AppIcon-MagnifyGlass AppIcon-Campfire AppIcon-Backpack";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CWDH6S87LF;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = IosChangeAppIcon/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wiltongarcia.IosChangeAppIcon;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		4DA727D32DA568F4003C4A41 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Camera AppIcon-Mushroon AppIcon-MagnifyGlass AppIcon-Campfire AppIcon-Backpack";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CWDH6S87LF;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = IosChangeAppIcon/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wiltongarcia.IosChangeAppIcon;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		4DA727D42DA568F4003C4A41 /* Debug */ = {
+		4DA727ED2DA5A262003C4A41 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -261,7 +188,7 @@
 			};
 			name = Debug;
 		};
-		4DA727D52DA568F4003C4A41 /* Release */ = {
+		4DA727EE2DA5A262003C4A41 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -317,28 +244,90 @@
 			};
 			name = Release;
 		};
+		4DA727F02DA5A262003C4A41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Camera AppIcon-Mushroom AppIcon-Backpack AppIcon-Campfire AppIcon-Map AppIcon-MagnifyGlass";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"IosChangeAppIcon-SwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = CWDH6S87LF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wiltongarcia.IosChangeAppIcon-SwiftUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4DA727F12DA5A262003C4A41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Camera AppIcon-Mushroom AppIcon-Backpack AppIcon-Campfire AppIcon-Map AppIcon-MagnifyGlass";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"IosChangeAppIcon-SwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = CWDH6S87LF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wiltongarcia.IosChangeAppIcon-SwiftUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4DA727B92DA568F2003C4A41 /* Build configuration list for PBXProject "IosChangeAppIcon" */ = {
+		4DA727DC2DA5A260003C4A41 /* Build configuration list for PBXProject "IosChangeAppIcon-SwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4DA727D42DA568F4003C4A41 /* Debug */,
-				4DA727D52DA568F4003C4A41 /* Release */,
+				4DA727ED2DA5A262003C4A41 /* Debug */,
+				4DA727EE2DA5A262003C4A41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4DA727D12DA568F4003C4A41 /* Build configuration list for PBXNativeTarget "IosChangeAppIcon" */ = {
+		4DA727EF2DA5A262003C4A41 /* Build configuration list for PBXNativeTarget "IosChangeAppIcon-SwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4DA727D22DA568F4003C4A41 /* Debug */,
-				4DA727D32DA568F4003C4A41 /* Release */,
+				4DA727F02DA5A262003C4A41 /* Debug */,
+				4DA727F12DA5A262003C4A41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 4DA727B62DA568F2003C4A41 /* Project object */;
+	rootObject = 4DA727D92DA5A260003C4A41 /* Project object */;
 }
