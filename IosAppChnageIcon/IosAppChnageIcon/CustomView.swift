@@ -4,32 +4,20 @@
 //
 //  Created by Wilton Garcia on 07/04/25.
 //
-
-import UIKit
 import UIKit
 
 class CustomView: UIViewController {
     
-    // MARK: - Configuração dos Ícones
-    private let iconNames = [
-        "AppIcon-Backpack",
-        "AppIcon-Camera",
-        "AppIcon-Campfire",
-        "AppIcon-MagnifyingGlass",
-        "AppIcon-Map",
-        "AppIcon-Mushroom"
+    // Dicionário: [Nome visível (imagem) : Nome do ícone alternativo (plist)]
+    private let iconData: [String: String] = [
+        "Backpack": "AppIcon-Backpack",
+        "Camera": "AppIcon-Camera",
+        "Campfire": "AppIcon-Campfire",
+        "MagnifyingGlass": "AppIcon-MagnifyingGlass",
+        "Map": "AppIcon-Map",
+        "Mushroom": "AppIcon-Mushroom"
     ]
-    
-    // MARK: - UI Components
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Meus Ícones Personalizados"
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -45,70 +33,105 @@ class CustomView: UIViewController {
         return collectionView
     }()
     
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         verifyIcons()
     }
     
-    // MARK: - UI Setup
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        
-        view.addSubview(titleLabel)
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
-    // MARK: - Verificação dos Ícones
     private func verifyIcons() {
-        for name in iconNames {
-            if UIImage(named: name) == nil {
-                print("⚠️ Ícone não encontrado: \(name)")
+        for key in iconData.keys {
+            if UIImage(named: key) == nil {
+                print("⚠️ Imagem não encontrada: \(key)")
             } else {
-                print("✅ Ícone carregado: \(name)")
+                print("✅ Imagem carregada: \(key)")
             }
         }
     }
 }
 
-// MARK: - CollectionView DataSource & Delegate
-extension CustomView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+// MARK: - CollectionView DataSource
+extension CustomView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return iconNames.count
+        return iconData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCell.identifier, for: indexPath) as! IconCell
-        cell.configure(with: iconNames[indexPath.item])
+        let iconName = Array(iconData.keys)[indexPath.item]
+        cell.configure(with: iconName)
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 60) / 3
-        return CGSize(width: width, height: width)
     }
 }
 
-// MARK: - Célula Personalizada para Ícones
+// MARK: - CollectionView Delegate
+extension CustomView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (collectionView.frame.width - 40) / 3
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let key = Array(iconData.keys)[indexPath.item]
+        if let plistName = iconData[key] {
+            changeAppIcon(to: plistName)
+        }
+    }
+    
+    private func changeAppIcon(to iconName: String) {
+        guard UIApplication.shared.supportsAlternateIcons else {
+            showAlert(title: "Erro", message: "Seu dispositivo não suporta mudança de ícones")
+            return
+        }
+        
+        let iconToSet: String? = iconName
+        
+        UIApplication.shared.setAlternateIconName(iconToSet) { error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self.showAlert(title: "Erro", message: "Não foi possível mudar o ícone: \(error.localizedDescription)")
+                } else {
+                    self.showAlert(title: "Sucesso", message: "Ícone alterado com sucesso para: \(iconToSet!) = \(iconName)")
+                }
+            }
+        }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+}
+
+
 class IconCell: UICollectionViewCell {
     static let identifier = "IconCell"
     
     private let iconImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
         return iv
+    }()
+    
+    private let iconNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.textAlignment = .center
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -121,20 +144,41 @@ class IconCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        contentView.addSubview(iconImageView)
-        iconImageView.frame = contentView.bounds
+        let stackView = UIStackView(arrangedSubviews: [iconImageView, iconNameLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentView.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+        ])
+        
+        contentView.backgroundColor = .secondarySystemBackground
+        contentView.layer.cornerRadius = 12
+        contentView.layer.masksToBounds = true
     }
     
-    func configure(with iconName: String) {
-        // Carrega a imagem SEM o modo template
-        if let icon = UIImage(named: iconName)?.withRenderingMode(.alwaysOriginal) {
+    func configure(with iconKey: String) {
+        iconNameLabel.text = iconKey
+        
+        if let icon = UIImage(named: iconKey)?.withRenderingMode(.alwaysOriginal) {
             iconImageView.image = icon
-            iconImageView.tintColor = nil // Remove qualquer tintura
         } else {
-            // Fallback visual claro
             iconImageView.image = UIImage(systemName: "exclamationmark.triangle")?
                 .withRenderingMode(.alwaysTemplate)
             iconImageView.tintColor = .systemRed
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            contentView.layer.borderWidth = isSelected ? 3 : 0
+            contentView.layer.borderColor = isSelected ? UIColor.systemBlue.cgColor : nil
         }
     }
 }
