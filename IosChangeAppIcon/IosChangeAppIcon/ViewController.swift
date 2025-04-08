@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         collectionView.register(DemoCollectionViewCell.self, forCellWithReuseIdentifier: DemoCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-   
+        
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -50,9 +50,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
         self.view.backgroundColor = .white
-    
+        
         setupView()
     }
     
@@ -91,7 +91,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DemoCollectionViewCell.identifier, for: indexPath) as! DemoCollectionViewCell
         cell.configure(with: imageNames[indexPath.row])
-
+        
         return cell
     }
     
@@ -110,8 +110,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Will change icon image to \(imageNames[indexPath.row])")
-        UIApplication.shared.setAlternateIconName(imageNames[indexPath.row]) { error in
-            
+        if UIApplication.shared.supportsAlternateIcons {
+            UIApplication.shared.setAlternateIconName("AppIcon-Camera-Preview") { error in
+                if let error = error {
+                    print("Erro detalhado: \(error)")
+                } else {
+                    print("Sem error")
+                }
+            }
         }
     }
 }
