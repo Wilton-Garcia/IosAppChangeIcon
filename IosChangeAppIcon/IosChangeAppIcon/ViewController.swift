@@ -110,5 +110,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Will change icon image to \(imageNames[indexPath.row])")
+        UIApplication.shared.setAlternateIconName(imageNames[indexPath.row]) { error in
+            
+        }
     }
 }
