@@ -8,14 +8,14 @@ import UIKit
 
 class CustomView: UIViewController {
     
-    // Dicionário: [Nome visível (imagem) : Nome do ícone alternativo (plist)]
-    private let iconData: [String: String] = [
-        "Backpack": "AppIcon-Backpack",
-        "Camera": "AppIcon-Camera",
-        "Campfire": "AppIcon-Campfire",
-        "MagnifyingGlass": "AppIcon-MagnifyingGlass",
-        "Map": "AppIcon-Map",
-        "Mushroom": "AppIcon-Mushroom"
+    // Lista de todos os ícones alternativos
+    private let iconData = [
+        "AppIcon-MagnifyingGlass",
+        "AppIcon-Map",
+        "AppIcon-Mushroom",
+        "AppIcon-Camera",
+        "AppIcon-Backpack",
+        "AppIcon-Campfire"
     ]
 
     private lazy var collectionView: UICollectionView = {
@@ -36,7 +36,7 @@ class CustomView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        verifyIcons()
+        verifyIconConfiguration()
     }
     
     private func setupUI() {
@@ -51,12 +51,21 @@ class CustomView: UIViewController {
         ])
     }
     
-    private func verifyIcons() {
-        for key in iconData.keys {
-            if UIImage(named: key) == nil {
-                print("⚠️ Imagem não encontrada: \(key)")
-            } else {
-                print("✅ Imagem carregada: \(key)")
+    // Verifica a configuração dos ícones alternativos
+    private func verifyIconConfiguration() {
+        guard let iconsDict = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons") as? [String: Any],
+              let alternateIcons = iconsDict["CFBundleAlternateIcons"] as? [String: Any] else {
+            print("⚠️ Configuração de ícones alternativos não encontrada no Info.plist")
+            return
+        }
+        
+        for iconName in iconData {
+            if alternateIcons[iconName] == nil {
+                print("⚠️ Ícone alternativo não configurado no Info.plist: \(iconName)")
+            }
+            
+            if UIImage(named: "\(iconName)-Preview") == nil {
+                print("⚠️ Imagem de preview não encontrada: \(iconName)-Preview")
             }
         }
     }
@@ -70,8 +79,8 @@ extension CustomView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCell.identifier, for: indexPath) as! IconCell
-        let iconName = Array(iconData.keys)[indexPath.item]
-        cell.configure(with: iconName)
+        let iconName = iconData[indexPath.item]
+        cell.configure(with: "\(iconName)-Preview", iconName: iconName)
         return cell
     }
 }
@@ -84,10 +93,8 @@ extension CustomView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let key = Array(iconData.keys)[indexPath.item]
-        if let plistName = iconData[key] {
-            changeAppIcon(to: plistName)
-        }
+        let iconName = iconData[indexPath.item]
+        changeAppIcon(to: iconName)
     }
     
     private func changeAppIcon(to iconName: String) {
@@ -96,14 +103,29 @@ extension CustomView: UICollectionViewDelegateFlowLayout {
             return
         }
         
-        let iconToSet: String? = iconName
+        // Verifica se o ícone existe na configuração
+        guard let iconsDict = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons") as? [String: Any],
+              let alternateIcons = iconsDict["CFBundleAlternateIcons"] as? [String: Any],
+              alternateIcons[iconName] != nil else {
+            showAlert(title: "Erro", message: "Ícone alternativo não configurado: \(iconName)")
+            return
+        }
         
-        UIApplication.shared.setAlternateIconName(iconToSet) { error in
+        UIApplication.shared.setAlternateIconName(iconName) { error in
             DispatchQueue.main.async {
                 if let error = error {
                     self.showAlert(title: "Erro", message: "Não foi possível mudar o ícone: \(error.localizedDescription)")
+                    print("Erro detalhado: \(error)")
                 } else {
-                    self.showAlert(title: "Sucesso", message: "Ícone alterado com sucesso para: \(iconToSet!) = \(iconName)")
+                    self.showAlert(title: "Sucesso", message: "Ícone alterado para \(iconName)")
+                    
+                    // Força a atualização visual
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let windows = windowScene.windows.first {
+                        UIView.transition(with: windows, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                            windows.rootViewController?.view.setNeedsDisplay()
+                        }, completion: nil)
+                    }
                 }
             }
         }
@@ -116,7 +138,7 @@ extension CustomView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+// MARK: - Custom Cell
 class IconCell: UICollectionViewCell {
     static let identifier = "IconCell"
     
@@ -163,10 +185,10 @@ class IconCell: UICollectionViewCell {
         contentView.layer.masksToBounds = true
     }
     
-    func configure(with iconKey: String) {
-        iconNameLabel.text = iconKey
+    func configure(with previewImageName: String, iconName: String) {
+        iconNameLabel.text = iconName
         
-        if let icon = UIImage(named: iconKey)?.withRenderingMode(.alwaysOriginal) {
+        if let icon = UIImage(named: previewImageName)?.withRenderingMode(.alwaysOriginal) {
             iconImageView.image = icon
         } else {
             iconImageView.image = UIImage(systemName: "exclamationmark.triangle")?
