@@ -62,6 +62,17 @@ class ViewController: UIViewController {
     }()
     
     
+    private lazy var changeScreenButton: UIButton = {
+       let button = UIButton()
+        button.setTitle("Next Screen", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .purple
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(navigateNextSceen), for: .touchUpInside)
+        return button
+    }()
+    
+    
     // Lazy initialization of the UICollectionView
     private lazy var mainCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -93,6 +104,14 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func navigateNextSceen() {
+        let nextViewController = ApiViewController()
+        print("Call other view Controller")
+        self.present(nextViewController, animated: true)
+        
+        
+    }
+    
     // Setup the view and add collection view with constraints
     private func setupView() {
         view.addSubview(titleLabel)
@@ -122,9 +141,17 @@ class ViewController: UIViewController {
             showAlertSwitch.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
         
+        view.addSubview(changeScreenButton)
+        NSLayoutConstraint.activate([
+            changeScreenButton.topAnchor.constraint(equalTo: showAlertSwitch.safeAreaLayoutGuide.topAnchor, constant: 50),
+            changeScreenButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            changeScreenButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            changeScreenButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
         view.addSubview(mainCollectionView)
         NSLayoutConstraint.activate([
-            mainCollectionView.topAnchor.constraint(equalTo: showAlertSwitch.safeAreaLayoutGuide.topAnchor, constant: 50),
+            mainCollectionView.topAnchor.constraint(equalTo: changeScreenButton.safeAreaLayoutGuide.bottomAnchor, constant: 50),
             mainCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             mainCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             mainCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
