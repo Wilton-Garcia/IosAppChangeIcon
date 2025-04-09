@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     
     private lazy var showAlertSwitch: UISwitch = {
         let switchControl = UISwitch()
-        switchControl.isOn = false
+        switchControl.isOn = true
         switchControl.translatesAutoresizingMaskIntoConstraints = false
 
         return switchControl
@@ -106,10 +106,9 @@ class ViewController: UIViewController {
     
     @objc func navigateNextSceen() {
         let nextViewController = ApiViewController()
+        nextViewController.notifyIconChange = showAlertSwitch.isOn
         print("Call other view Controller")
-        self.present(nextViewController, animated: true)
-        
-        
+        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     // Setup the view and add collection view with constraints
